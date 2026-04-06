@@ -1,0 +1,1039 @@
+/* 1. Variables & Global */
+:root {
+    --primary: #6a1b9a;
+    --primary-dark: #4a148c;
+    --accent: #d4a373;
+    --cream: #faf9f6;
+    --white: #ffffff;
+    --text: #2d2d2d;
+    --shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* 2. Layout */
+#container {
+    display: grid;
+    grid-template-columns: 240px 1fr 240px;
+    max-width: 1600px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+/* 3. Header */
+#header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.logo-img {
+    border: 2px solid var(--accent);
+    padding: 5px;
+    border: none;
+    border-radius: 100px;
+}
+
+/* 4. Navigation (Left Sidebar) */
+#left {
+    background: white;
+    padding: 40px 25px;
+    border-right: 1px solid #eee;
+}
+
+#left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+#left ul { list-style: none; padding: 0; }
+#left ul li a {
+    text-decoration: none;
+    color: #666;
+    display: block;
+    padding: 12px 0;
+    transition: 0.3s;
+}
+
+#left ul li a:hover{
+    color: var(--primary);
+    font-weight: 600;
+    padding-left: 8px;
+}
+
+/* 5. Product Content (Center) */
+#center { padding: 60px 40px; background: white; }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; }
+.line { width: 50px; height: 2px; background: var(--accent); margin: 15px auto; }
+.subtitle { color: #888; font-style: italic; }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 in a row */
+    gap: 30px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid #f9f9f9;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.img-container { position: relative; overflow: hidden; height: 320px; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.product-card:hover img { transform: scale(1.1); }
+
+/* Overlay effect */
+.overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(74, 20, 140, 0.4);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: 0.3s;
+}
+.product-card:hover .overlay { opacity: 1; }
+
+.quick-view {
+    background: white; border: none; padding: 10px 20px; 
+    border-radius: 25px; cursor: pointer; font-weight: 600;
+}
+
+.card-info { padding: 25px; text-align: center; }
+.price { color: var(--primary); font-size: 1.3rem; font-weight: 600; margin: 10px 0; display: block; }
+
+.add-btn-link{
+    margin-top: auto;
+    text-decoration: none;
+}
+.add-btn {
+    background: var(--primary); color: white; border: none;
+    padding: 12px 25px; border-radius: 5px; cursor: pointer;
+    width: 100%; transition: 0.3s;
+}
+.add-btn:hover { background: var(--primary-dark); }
+
+/* 6. Favorites (Right Sidebar) */
+#right { background: var(--cream); padding: 40px 25px; }
+.sticky-promo { position: sticky; top: 20px; }
+.promo-item { margin-bottom: 25px; font-size: 0.9rem; }
+.newsletter-box { background: white; padding: 20px; border-radius: 10px; text-align: center; }
+.btn-sm { background: var(--accent); border: none; color: white; padding: 5px 15px; cursor: pointer; border-radius: 5px; }
+
+.btn-sm:hover{
+    background-color:#4a148c;
+    color: rgb(255, 0, 0);
+}
+
+/* 7. Footer */
+#footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 5px solid var(--accent);
+}
+
+.footer-logo { font-family: 'Playfair Display', serif; letter-spacing: 4px; display: block; margin-bottom: 20px; }
+.footer-links a { color: #ccc; text-decoration: none; margin: 0 15px; font-size: 0.9rem; }
+.heart { color: #ff5252; display: inline-block; animation: heartBeat 1.5s infinite; }
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+}
+
+/* 8. Mobile Responsive */
+/* @media (max-width: 1100px) {
+    #container { grid-template-columns: 1fr; }
+    #left, #right { display: none; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .header{flex-direction:column;
+    text-align: center;}
+}
+
+@media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+} */
+
+/* =========================
+   EXTRA RESPONSIVE LAYER
+   (No changes to original)
+   ========================= */
+
+/* 9. Scroll Animations */
+/* 1. Variables & Global */
+:root {
+    --primary: #6a1b9a;
+    --primary-dark: #4a148c;
+    --accent: #d4a373;
+    --cream: #faf9f6;
+    --white: #ffffff;
+    --text: #2d2d2d;
+    --shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* 2. Layout */
+#container {
+    display: grid;
+    grid-template-columns: 240px 1fr 240px;
+    max-width: 1600px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+/* 3. Header */
+#header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.logo-img {
+    border: 2px solid var(--accent);
+    padding: 5px;
+    background: white;
+}
+
+/* 4. Navigation (Left Sidebar) */
+#left {
+    background: white;
+    padding: 40px 25px;
+    border-right: 1px solid #eee;
+}
+
+#left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+#left ul { list-style: none; padding: 0; }
+#left ul li a {
+    text-decoration: none;
+    color: #666;
+    display: block;
+    padding: 12px 0;
+    transition: 0.3s;
+}
+
+#left ul li a:hover, #left ul li a.active {
+    color: var(--primary);
+    font-weight: 600;
+    padding-left: 8px;
+}
+
+/* 5. Product Content (Center) */
+#center { padding: 60px 40px; background: white; }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; }
+.line { width: 50px; height: 2px; background: var(--accent); margin: 15px auto; }
+.subtitle { color: #888; font-style: italic; }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 in a row */
+    gap: 30px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid #f9f9f9;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.img-container { position: relative; overflow: hidden; height: 320px; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.product-card:hover img { transform: scale(1.1); }
+
+/* Overlay effect */
+.overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(74, 20, 140, 0.4);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: 0.3s;
+}
+.product-card:hover .overlay { opacity: 1; }
+
+.quick-view {
+    background: white; border: none; padding: 10px 20px; 
+    border-radius: 25px; cursor: pointer; font-weight: 600;
+}
+
+.card-info { padding: 25px; text-align: center; }
+.price { color: var(--primary); font-size: 1.3rem; font-weight: 600; margin: 10px 0; display: block; }
+
+.add-btn {
+    background: var(--primary); color: white; border: none;
+    padding: 12px 25px; border-radius: 5px; cursor: pointer;
+    width: 100%; transition: 0.3s;
+}
+.add-btn:hover { background: var(--primary-dark); }
+
+/* 6. Favorites (Right Sidebar) */
+#right { background: var(--cream); padding: 40px 25px; }
+.sticky-promo { position: static; top: 20px; }
+.promo-item { margin-bottom: 25px; font-size: 0.9rem; }
+.newsletter-box { background: white; padding: 20px; border-radius: 10px; text-align: center; }
+.btn-sm { background: var(--accent); border: none; color: white; padding: 5px 15px; cursor: pointer; }
+
+/* 7. Footer */
+#footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 5px solid var(--accent);
+}
+
+.footer-logo { font-family: 'Playfair Display', serif; letter-spacing: 4px; display: block; margin-bottom: 20px; }
+.footer-links a { color: #ccc; text-decoration: none; margin: 0 15px; font-size: 0.9rem; }
+.heart { color: #ff5252; display: inline-block; animation: heartBeat 1.5s infinite; }
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+}
+
+/* 8. Mobile Responsive */
+@media (max-width: 1100px) {
+    #container { grid-template-columns: 1fr; }
+    #left, #right { display: none; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+}
+
+/*Contact Page*/
+/* --- Use existing variables from your style.css --- */
+:root {
+    --primary: #6a1b9a;
+    --primary-dark: #4a148c;
+    --accent: #d4a373;
+    --cream: #faf9f6;
+    --white: #ffffff;
+    --text: #2d2d2d;
+    --border: #e0e0e0;
+}
+
+/* --- Layout Refinement --- */
+#center {
+    padding: 60px 5%;
+    background: var(--white);
+}
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.line {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 15px auto;
+}
+
+.subtitle {
+    font-style: italic;
+    color: #777;
+    font-size: 1.1rem;
+}
+
+/* --- Contact Grid --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+/* --- Form Styling --- */
+.contact-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(106, 27, 154, 0.1);
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* --- Studio Info Styling --- */
+.studio-info {
+    padding-top: 40px;
+}
+
+.info-block {
+    margin-bottom: 35px;
+}
+
+.info-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.info-block p {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .studio-info {
+        order: -1; /* Show info above form on mobile */
+        text-align: center;
+    }
+}
+
+/* --- Use existing variables from your style.css --- */
+:root {
+    --primary: #6a1b9a;
+    --primary-dark: #4a148c;
+    --accent: #d4a373;
+    --cream: #faf9f6;
+    --white: #ffffff;
+    --text: #2d2d2d;
+    --border: #e0e0e0;
+}
+
+/* --- Layout Refinement --- */
+#center {
+    padding: 60px 5%;
+    background: var(--white);
+}
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.line {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 15px auto;
+}
+
+.subtitle {
+    font-style: italic;
+    color: #777;
+    font-size: 1.1rem;
+}
+
+/* --- Contact Grid --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+/* --- Form Styling --- */
+.contact-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(106, 27, 154, 0.1);
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* --- Studio Info Styling --- */
+.studio-info {
+    padding-top: 40px;
+}
+
+.info-block {
+    margin-bottom: 35px;
+}
+
+.info-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.info-block p {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .studio-info {
+        order: -1; /* Show info above form on mobile */
+        text-align: center;
+    }
+}
+/* Hero Styles */
+.hero-image-wrapper {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+}
+
+.hero-overlay h2 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Feature Grid */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 50px 0;
+    text-align: center;
+}
+
+.feature-item .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.feature-item h4 {
+    margin: 10px 0;
+    color: var(--primary-purple);
+    font-family: 'Playfair Display', serif;
+}
+
+.feature-item p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Typography Enhancements */
+blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+    border-left: none;
+    text-align: center;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.testimonial {
+    background: var(--soft-cream);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px dashed var(--accent-gold);
+}
+
+.testimonial cite {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    color: var(--primary-purple);
+    font-size: 0.9rem;
+}
+
+/* Wedding Intro Styling */
+.lead-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Modern Services Grid */
+.services-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 50px 0;
+}
+
+
+.service-card {
+    background: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+}
+
+.service-icon { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+
+
+/* Gallery Section */
+.wedding-gallery h3 { 
+    text-align: center; 
+    font-family: 'Playfair Display', serif; 
+    margin-bottom: 30px; 
+    
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    
+}
+
+.gallery-grid img:hover { transform: scale(1.05); }
+
+/* Process Steps */
+.process { padding: 40px 0; }
+.process h3 { text-align: center; font-family: 'Playfair Display', serif; margin-bottom: 40px; }
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.step { flex: 1; text-align: center; position: relative; }
+.step-num {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    opacity: 0.3;
+}
+
+/* Consultation CTA */
+.consultation-cta {
+    background: #4a148c; /* Darker Purple */
+    color: white;
+    padding: 50px 150px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.consultation-cta h3 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 10px; }
+
+.cta-button {
+    display: inline-block;
+    background: var(--accent-gold);
+    color: white;
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.cta-button:hover { background: #b8860b; }
+/* --- Fix for the Product Grid & Alignment --- */
+.product-grid {
+    display: grid;
+    /* Forces exactly 3 columns on desktop as per your vision */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    margin-top: 30px;
+    align-items: stretch; /* Ensures all cards are same height */
+}
+
+/* Fix for the card scaling issues in your screenshot */
+.product-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Keeps cards consistent */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Ensures images fill the top of the card properly */
+.img-container {
+    width: 100%;
+    height: 250px; /* Set a fixed height for product images */
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This stops images from stretching/looking weird */
+}
+
+/* --- Navigation & Sidebar Fixes --- */
+#container {
+    display: grid;
+    grid-template-columns: 220px 1fr 240px;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Sidebar Styling to match your screenshot's "Explore" section */
+#left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #2d3436;
+    border-bottom: 2px solid #D4A373;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- Wedding Content Alignment --- */
+.services-modern {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.service-card {
+    padding: 30px;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+
+
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.contact-form button {
+  background: #4a148c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #4a148c;
+}
+
+
+
+/* add-page */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+
+.order-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay:target {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s;
+}
+
+.close-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 25px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* responsive */
+/* =========================
+   FINAL RESPONSIVE FIX (CLEAN)
+   ========================= */
+/* =========================
+   FORCE DESKTOP VIEW ON ALL DEVICES
+   ========================= */
+
+@media (max-width: 1100px),
+       (max-width: 768px),
+       (max-width: 600px) {
+
+    /* Keep 3-column layout */
+    #container {
+        grid-template-columns: 240px 1fr 240px !important;
+        max-width: 1600px;
+    }
+
+    /* Always show sidebars */
+    #left, #right {
+        display: block !important;
+    }
+
+    /* Keep product 3 per row */
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    /* Keep gallery 3 columns */
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    /* Keep services 3 columns */
+    .services-modern {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    /* Prevent shrinking */
+    body {
+        min-width: 1200px;
+    }
+}
